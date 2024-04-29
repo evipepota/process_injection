@@ -19,7 +19,12 @@ void main(int argc, char *argv[]) {
 	}
 
 
-	LPSTR libPath = "C:\\Users\\Meimu\\workspace\\process_injection\\dll_injection\\evil.dll";
+	char* filename = argv[2];
+	char currentDir[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, currentDir);
+	char libPath[MAX_PATH];
+	snprintf(libPath, MAX_PATH, "%s\\%s", currentDir, filename);
+
 	DWORD pathSize = strlen(libPath) + 1;
 
 	LPSTR remoteLibPath = VirtualAllocEx(
